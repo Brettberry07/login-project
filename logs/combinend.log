@@ -1,1 +1,11 @@
 {"level":"info","message":"App listening on port 3000","timestamp":"2025-06-27T19:59:00.710Z"}
+{"level":"info","message":"App listening on port 3000","timestamp":"2025-06-27T20:01:37.838Z"}
+{"errors":[{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":""}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T20:01:44.397Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T20:01:44.398Z"}
+{"email":"brett@email.com","level":"info","message":"User logged in","timestamp":"2025-06-27T20:01:48.516Z","userId":1}
+{"level":"info","message":"Token verified","timestamp":"2025-06-27T20:01:49.447Z","userId":1}
+{"level":"info","message":"User data accessed","timestamp":"2025-06-27T20:01:49.447Z","userId":1}
+{"level":"info","message":"Token verified","timestamp":"2025-06-27T20:01:51.655Z","userId":1}
+{"level":"info","message":"User data accessed","timestamp":"2025-06-27T20:01:51.656Z","userId":1}
+{"level":"info","message":"User logged out","timestamp":"2025-06-27T20:01:52.420Z"}
+{"level":"error","message":"[GET] /data → Authentication token required","timestamp":"2025-06-27T20:01:53.455Z"}

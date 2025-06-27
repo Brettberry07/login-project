@@ -2,10 +2,10 @@ const express          = require('express');
 const cookieParser     = require('cookie-parser');
 const rateLimit        = require('express-rate-limit');
 
-const { PORT } = require('./utils/config');
-const { logger, httpLogger } = require('./utils/logger');
-const authRoutes    = require('./routes/auth');
-const userRoutes    = require('./routes/users');
+const { PORT } = require('../utils/config');
+const { logger, httpLogger } = require('../utils/logger');
+const authRoutes    = require('../routes/auth');
+const userRoutes    = require('../routes/users');
 
 const app = express();
 

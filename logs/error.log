@@ -1,0 +1,3 @@
+{"errors":[{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":""}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T20:01:44.397Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T20:01:44.398Z"}
+{"level":"error","message":"[GET] /data → Authentication token required","timestamp":"2025-06-27T20:01:53.455Z"}
