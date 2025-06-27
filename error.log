@@ -1,1 +1,33 @@
 {"level":"error","message":"Error inserting user:","timestamp":"2025-06-27T06:25:07.447Z"}
+{"level":"error","message":"Email or password validation error for create user","timestamp":"2025-06-27T19:09:26.869Z"}
+{"level":"error","message":"[POST] /users/create → next is not defined","timestamp":"2025-06-27T19:09:26.871Z"}
+{"level":"error","message":"Email or password validation error for create user","timestamp":"2025-06-27T19:10:23.898Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T19:10:23.898Z"}
+{"level":"error","message":"Email or password validation error for log in","timestamp":"2025-06-27T19:10:31.740Z"}
+{"errors":[{"location":"body","msg":"Invalid email format","path":"email","type":"field","value":"not an emaiuk"},{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":""}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T19:14:05.662Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T19:14:05.663Z"}
+{"errors":[{"location":"body","msg":"Invalid email format","path":"email","type":"field","value":"not an emaiuk"},{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":"gh"}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T19:14:08.670Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T19:14:08.670Z"}
+{"errors":[{"location":"body","msg":"Invalid email format","path":"email","type":"field","value":""},{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":""}],"level":"error","message":"Validation failed on login","timestamp":"2025-06-27T19:14:09.635Z"}
+{"level":"error","message":"[POST] /login → Invalid email or password","timestamp":"2025-06-27T19:14:09.636Z"}
+{"errors":[{"location":"body","msg":"Invalid email format","path":"email","type":"field","value":"not an emaiuk"},{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":"gh"}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T19:14:34.280Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T19:14:34.280Z"}
+{"level":"error","message":"DB error inserting user SQLITE_CONSTRAINT: UNIQUE constraint failed: users.email","timestamp":"2025-06-27T19:14:45.864Z"}
+{"level":"error","message":"[POST] /users/create → Could not create user","timestamp":"2025-06-27T19:14:45.864Z"}
+{"errors":[{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":""}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T19:31:32.431Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T19:31:32.432Z"}
+{"level":"error","message":"DB error inserting user SQLITE_CONSTRAINT: UNIQUE constraint failed: users.email","timestamp":"2025-06-27T19:31:36.646Z"}
+{"level":"error","message":"[POST] /users/create → Could not create user","timestamp":"2025-06-27T19:31:36.647Z"}
+{"errors":[{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":""}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T19:34:08.181Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T19:34:08.182Z"}
+{"errors":[{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":""}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T19:34:09.378Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T19:34:09.378Z"}
+{"errors":[{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":"12345"}],"level":"error","message":"Validation failed on login","timestamp":"2025-06-27T19:47:34.417Z"}
+{"level":"error","message":"[POST] /users/login → Invalid email or password","timestamp":"2025-06-27T19:47:34.419Z"}
+{"errors":[{"location":"body","msg":"Password must be at least 6 characters long","path":"password","type":"field","value":"1234"}],"level":"error","message":"Validation failed on user create","timestamp":"2025-06-27T19:47:49.276Z"}
+{"level":"error","message":"[POST] /users/create → Invalid email or password","timestamp":"2025-06-27T19:47:49.277Z"}
+{"level":"error","message":"DB error inserting user SQLITE_CONSTRAINT: UNIQUE constraint failed: users.email","timestamp":"2025-06-27T19:47:53.880Z"}
+{"level":"error","message":"[POST] /users/create → Could not create user","timestamp":"2025-06-27T19:47:53.880Z"}
+{"level":"error","message":"[GET] /data → Authentication token required","timestamp":"2025-06-27T19:47:58.797Z"}
+{"level":"error","message":"[GET] /data → Authentication token required","timestamp":"2025-06-27T19:48:02.405Z"}
+{"level":"error","message":"[GET] /data → Authentication token required","timestamp":"2025-06-27T19:48:02.747Z"}
