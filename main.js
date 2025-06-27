@@ -9,7 +9,6 @@ app.use(express.static('public')); // Serving the frontend page
 app.use(cookieParser()); // Middleware to parse cookies
 app.use(express.json()); // Middleware to parse JSON bodies
 
-
 // loading consts from .env
 const PORT = process.env.PORT || 3000; // Default to 3000 if PORT is not set
 const DB_PATH = process.env.DB_PATH || './data.db'; // Default to './data.db' if DB_PATH is not set
