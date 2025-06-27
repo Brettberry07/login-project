@@ -35,64 +35,61 @@
     <p id="logout-result"></p>
   </section>
 
-  <script>
-    let token = localStorage.getItem('token');
-
+    <script>
     async function signup() {
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
 
-      const res = await fetch('/users/create', {
+        const res = await fetch('/users/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+        body: JSON.stringify({ email, password }),
+        credentials: 'include'
+        });
 
-      const text = await res.text();
-      document.getElementById('signup-result').textContent = text;
+        const text = await res.text();
+        document.getElementById('signup-result').textContent = text;
     }
 
     async function login() {
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
 
-      const res = await fetch('/login', {
+        const res = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+        body: JSON.stringify({ email, password }),
+        credentials: 'include' // ✅ important: allow cookies to be sent/received
+        });
 
-      if (res.ok) {
-        const data = await res.json();
-        token = data.token;
-        localStorage.setItem('token', token);
+        if (res.ok) {
         document.getElementById('login-result').textContent = "Logged in!";
-      } else {
+        } else {
         const msg = await res.text();
         document.getElementById('login-result').textContent = msg;
-      }
+        }
     }
 
     async function getUserData() {
-      const res = await fetch('/users/data', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
+        const res = await fetch('/users/data', {
+        method: 'GET',
+        credentials: 'include' // ✅ send token from cookie
+        });
 
-      const text = await res.text();
-      document.getElementById('userdata-result').textContent = text;
+        const text = await res.text();
+        document.getElementById('userdata-result').textContent = text;
     }
 
     async function logout() {
-      const res = await fetch('/logout', {
+        const res = await fetch('/logout', {
         method: 'POST',
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
+        credentials: 'include' // ✅ send cookie to allow server to clear it
+        });
 
-      const text = await res.text();
-      document.getElementById('logout-result').textContent = text;
-      token = null;
-      localStorage.removeItem('token');
+        const text = await res.text();
+        document.getElementById('logout-result').textContent = text;
     }
-  </script>
+    </script>
+
 </body>
 </html>

@@ -2,9 +2,12 @@ const express = require('express')
 const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 require('dotenv').config(); // Load environment variables from .env file
 const app = express()
 app.use(express.static('public')); // Serving the frontend page
+app.use(cookieParser()); // Middleware to parse cookies
+app.use(express.json()); // Middleware to parse JSON bodies
 
 
 // loading consts from .env
@@ -36,10 +39,6 @@ db.run(`
     expires_at INTEGER
   )
 `);
-
-
-app.use(express.json()); // Middleware to parse JSON bodies
-
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -87,30 +86,22 @@ app.post('/login', (req, res) => {
             { expiresIn: '1h' }
         );
 
-        res.json({ token });
+        // Set the token in a cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // true on HTTPS only
+            sameSite: 'strict', // or 'lax' depending on needs
+            maxAge: 3600000, // 1 hour in ms
+        });
+
+        res.json({ message: 'Logged in, stored token in cookie' });
     });
 });
 
-// logour of the current user (/logout {jwt})
-app.post('/logout', authenticateToken, (req, res) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (!token) return res.status(400).send('No token provided');
-
-  // Decode token to get expiration
-  const decoded = jwt.decode(token);
-  const expiresAt = decoded.exp;
-
-  const sql = 'INSERT INTO blacklisted_tokens (token, expires_at) VALUES (?, ?)';
-  db.run(sql, [token, expiresAt], function (err) {
-    if (err) {
-      console.error('Failed to blacklist token:', err.message);
-      return res.status(500).send('Could not log out');
-    }
-
-    res.send('Successfully logged out');
-  });
+// logout the current user (/logout (cookie)) | Cookie based, just clear cookie
+app.post('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.send('Logged out');
 });
 
 // get the users data (pulldata {jwt} )
@@ -120,8 +111,7 @@ app.get('/users/data', authenticateToken, (req, res) => {
 
 // middleware authentication function
 function authenticateToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  const token = req.cookies.token
   if (!token) return res.status(401).send('Token required');
 
   // Step 1: Check if token is blacklisted
@@ -145,7 +135,6 @@ function authenticateToken(req, res, next) {
 }
 
 
-
 // creating a new user
 // This obvsly not secure at all and bad practice lol
 // app.post('/users/create/:email/:password', (req, res) => {
@@ -162,32 +151,27 @@ function authenticateToken(req, res, next) {
 //     })
 // })
 
-// the different HTTP methods
+// // logour of the current user (/logout {jwt}) | Blacklisting the token
+// app.post('/logout', authenticateToken, (req, res) => {
+//   const authHeader = req.headers['authorization'];
+//   const token = authHeader && authHeader.split(' ')[1];
 
-// app.post('/', (req, res) => {
-//   res.send('Got a POST request')
-// })
+//   if (!token) return res.status(400).send('No token provided');
 
-// app.put('/user', (req, res) => {
-//   res.send('Got a PUT request at /user')
-// })
+//   // Decode token to get expiration
+//   const decoded = jwt.decode(token);
+//   const expiresAt = decoded.exp;
 
-// app.delete('/user', (req, res) => {
-//   res.send('Got a DELETE request at /user')
-// })
+//   const sql = 'INSERT INTO blacklisted_tokens (token, expires_at) VALUES (?, ?)';
+//   db.run(sql, [token, expiresAt], function (err) {
+//     if (err) {
+//       console.error('Failed to blacklist token:', err.message);
+//       return res.status(500).send('Could not log out');
+//     }
 
-// // // String pattern matching
-// // app.get('/ab?cd', (req, res) => {
-// //   res.send('Pattern matched: ab?cd') // Matches 'acd' or 'abcd'
-// // })
-
-// // app.get('/ab+cd', (req, res) => {
-// //   res.send('ab+cd') // Matches 'acd', 'abcd', 'abbbcd', etc.
-// // })
-
-// // app.get('/ab*cd', (req, res) => {
-// //   res.send('ab*cd') // Matches 'abRANDOMcd', 'abcd', 'ab123cd', etc.
-// // })
+//     res.send('Successfully logged out');
+//   });
+// });
 
 // // Route parameters
 // app.get('/users/:userId/books/:bookId', (req, res) => {
