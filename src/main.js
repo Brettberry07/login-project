@@ -36,8 +36,6 @@ app.listen(PORT, () => {
   logger.info(`App listening on port ${PORT}`);
 })
 
-
-
 // creating a new user
 // This obvsly not secure at all and bad practice lol
 // app.post('/users/create/:email/:password', (req, res) => {
@@ -81,5 +79,3 @@ app.listen(PORT, () => {
 // //   res.send(req.params) // Returns an object with userId and bookId
 //     res.send(`User ID: ${req.params.userId}, Book ID: ${req.params.bookId}`)
 // })
-
-

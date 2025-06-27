@@ -1,8 +1,3 @@
-🔧 Minor Improvements & Clean-up
-
-    Move Routes Into Their Own Module
-
-        For larger apps, split off routes/auth.js, routes/users.js with controllers, so main.js just does app.use('/login', authRouter), etc.
 
 🚀 What to Tackle Next
 
